@@ -1,0 +1,44 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "nfapi-cofre",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-11-01",
+	"compatibility_flags": ["nodejs_compat"],
+	"observability": { "enabled": true },
+
+	// A cada 5 minutos: se houver NFC-e em contingência, confere a SEFAZ e transmite a fila.
+	"triggers": { "crons": ["*/5 * * * *"] },
+
+	// Identifica cada build publicado: é por onde o painel sabe que a atualização terminou.
+	"version_metadata": { "binding": "CF_VERSION_METADATA" },
+
+	// Segredo obrigatório: o deploy falha se não estiver definido.
+	"secrets": { "required": ["VAULT_SECRET"] },
+
+	// Proxy mTLS: faz a conexão com SEFAZ / NFS-e Nacional usando a cadeia ICP-Brasil.
+	"containers": [
+		{
+			"class_name": "MtlsProxy",
+			"image": "./container/Dockerfile",
+			"instance_type": "lite",
+			"max_instances": 3
+		}
+	],
+	"durable_objects": {
+		"bindings": [{ "name": "MTLS", "class_name": "MtlsProxy" }]
+	},
+	"migrations": [{ "tag": "v1", "new_sqlite_classes": ["MtlsProxy"] }],
+
+	// Certificado cifrado, chaves de API, emissões, auditoria e índice dos documentos.
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "nfapi-cofre",
+			"database_id": "a4c696a8-aa2a-4e7b-a3e1-ad874f8c9539",
+			"migrations_dir": "migrations"
+		}
+	],
+
+	// XML autorizados, eventos, PDF e o diário de transmissões.
+	"r2_buckets": [{ "binding": "DOCS", "bucket_name": "nfapi-cofre-docs","preview_bucket_name": "nfapi-cofre-docs" }]
+}

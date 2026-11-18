@@ -1,0 +1,15 @@
+node_modules/
+.wrangler/
+.dev.vars
+*.log
+
+# Tipos gerados por "wrangler types"
+worker-configuration.d.ts
+
+# Certificados e chaves nunca entram no repositório
+*.pfx
+*.p12
+*.key
+*.pem
+!container/ca/*.pem
+!**/fixtures/**/*.pem

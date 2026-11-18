@@ -1,0 +1,8 @@
+# O cofre é um projeto autocontido (é a raiz do repositório criado pelo botão
+# Deploy to Cloudflare). O campo "packages" é exigido pelo pnpm 9, que é a
+# versão usada pelo build do Cloudflare; "allowBuilds" é lido pelo pnpm 10+.
+packages:
+  - "."
+allowBuilds:
+  esbuild: true
+  workerd: true

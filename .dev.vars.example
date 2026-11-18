@@ -1,0 +1,4 @@
+# Segredo mestre do cofre: 64 caracteres hexadecimais aleatórios.
+# Gere com:  openssl rand -hex 32
+# Ele cifra o certificado e dá acesso à tela /setup. Guarde-o em local seguro.
+VAULT_SECRET=

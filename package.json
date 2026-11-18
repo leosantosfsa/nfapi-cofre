@@ -1,0 +1,43 @@
+{
+  "name": "nfapi-cofre",
+  "version": "0.11.2",
+  "private": true,
+  "type": "module",
+  "description": "Cofre NFapi: API de emissão de notas fiscais que roda na conta Cloudflare do emitente. Guarda o certificado A1, monta e assina os documentos, transmite com mTLS e arquiva os XML.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "node tools/atualizar.mjs && node tools/implantar.mjs",
+    "test": "vitest run && vitest run --config vitest.node.config.ts && node --test container/test/mtls.test.mjs tools/test/atualizar.test.mjs",
+    "testar-certificado": "node tools/testar-certificado.mjs",
+    "typecheck": "wrangler types && tsc --noEmit",
+    "cf-typegen": "wrangler types"
+  },
+  "cloudflare": {
+    "label": "NFapi Cofre",
+    "bindings": {
+      "VAULT_SECRET": {
+        "description": "Segredo mestre do cofre: no mínimo 32 caracteres aleatórios. Gere em https://nfapi.queven.app/instalar (ou com `openssl rand -hex 32`) e guarde-o em local seguro: ele cifra o certificado e é a senha da tela /setup. Apague qualquer valor preenchido automaticamente pelo navegador antes de colar."
+      }
+    }
+  },
+  "dependencies": {
+    "@cloudflare/containers": "^0.3.7",
+    "@xmldom/xmldom": "^0.9.12",
+    "hono": "^4.13.18",
+    "node-forge": "^1.4.3",
+    "pdf-lib": "1.17.1",
+    "qrcode-generator": "2.0.4",
+    "xml-crypto": "^6.4.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "^1.8.2",
+    "@types/node": "^26.6.6",
+    "@types/node-forge": "^1.3.14",
+    "libxml2-wasm": "^0.7.2",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0",
+    "wrangler": "^4.162.0"
+  }
+}

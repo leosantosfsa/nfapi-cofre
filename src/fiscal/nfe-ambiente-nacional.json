@@ -1,0 +1,11 @@
+{
+	"$comentario": "Web services do Ambiente Nacional da NF-e (AN), conferidos em 17/11/2026 na Relação de Serviços Web do Portal Nacional da NF-e (produção) e do portal de homologação. 'distribuicao': NFeDistribuicaoDFe (NT 2014.002 v1.40). 'evento': RecepcaoEvento 4.00, que recebe a manifestação do destinatário (NT 2020.001).",
+	"producao": {
+		"distribuicao": "https://www1.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx",
+		"evento": "https://www.nfe.fazenda.gov.br/NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx"
+	},
+	"homologacao": {
+		"distribuicao": "https://hom1.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx",
+		"evento": "https://hom1.nfe.fazenda.gov.br/NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx"
+	}
+}

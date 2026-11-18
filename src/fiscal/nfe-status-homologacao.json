@@ -1,0 +1,31 @@
+{
+	"$comentario": "Tabela PARCIAL: só o serviço NFeStatusServico4 em homologação, usado pelos testes do admin. A tabela completa de autorizadores entra com a emissão de NF-e/NFC-e. 'verificado' indica que o endereço respondeu em teste real com certificado A1; os demais vêm de implementações de referência e ainda precisam de confirmação.",
+	"nfe": [
+		{
+			"autorizador": "SP",
+			"ufs": ["35"],
+			"status": "https://homologacao.nfe.fazenda.sp.gov.br/ws/nfestatusservico4.asmx",
+			"verificado": true
+		},
+		{
+			"autorizador": "SVRS",
+			"ufs": ["12", "27", "16", "23", "53", "32", "15", "25", "22", "33", "24", "11", "14", "42", "28", "17"],
+			"status": "https://nfe-homologacao.svrs.rs.gov.br/ws/NfeStatusServico/NfeStatusServico4.asmx",
+			"verificado": true
+		}
+	],
+	"nfce": [
+		{
+			"autorizador": "SP",
+			"ufs": ["35"],
+			"status": "https://homologacao.nfce.fazenda.sp.gov.br/ws/NFeStatusServico4.asmx",
+			"verificado": true
+		},
+		{
+			"autorizador": "SVRS",
+			"ufs": ["12", "27", "16", "23", "53", "32", "15", "25", "22", "33", "24", "11", "14", "42", "28", "17", "29", "26", "21"],
+			"status": "https://nfce-homologacao.svrs.rs.gov.br/ws/NfeStatusServico/NfeStatusServico4.asmx",
+			"verificado": false
+		}
+	]
+}
